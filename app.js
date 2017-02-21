@@ -31,9 +31,14 @@ var wineGlass = new CatalogItem('img/wine-glass.jpg','wineGlass');
 console.log(rTwoBag);
 
 //Item Array
-var Items = [rTwoBag,bananaCutter,bathroomStand,rainBoots,breakfastMaker,meatGum,chairHump,cthulhuToy,dogDuck,dragonCan,penCap,petSweep,pizzaCutter,sharkBag,babySweep,tauntaunBag,unicornCan,tentacleUsb,wateringCan,wineGlass];
+var items = [rTwoBag,bananaCutter,bathroomStand,rainBoots,breakfastMaker,meatGum,chairHump,cthulhuToy,dogDuck,dragonCan,penCap,petSweep,pizzaCutter,sharkBag,babySweep,tauntaunBag,unicornCan,tentacleUsb,wateringCan,wineGlass];
 console.log(Items);
 
+//Random number generator
+function randomPick(){
+  return Math.floor(Math.random() * items.length);
+
+}
 //Creates image node
 function drawCatalogItem(itemToDraw){
   console.log(itemToDraw);
@@ -46,4 +51,3 @@ function drawCatalogItem(itemToDraw){
 drawCatalogItem(wineGlass);
 drawCatalogItem(tentacleUsb);
 drawCatalogItem(pizzaCutter);
-drawCatalogItem(unicornCan);
