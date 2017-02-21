@@ -57,24 +57,32 @@ console.log(itemLeft);
 console.log(itemCenter);
 console.log(itemRight);
 
-var leftItemPicture = items[itemLeft];
-var centerItemPicture = items[itemCenter];
-var rightItemPicture = items[itemRight];
-console.log(leftItemPicture);
-console.log(centerItemPicture);
-console.log(rightItemPicture);
 //Aaray for random three picks
 var randomThreePicks = [];
+randomThreePicks.push(itemLeft);
+randomThreePicks.push(itemCenter);
+randomThreePicks.push(itemRight);
+console.log(randomThreePicks);
+
+while (randomThreePicks.includes(itemLeft)){
+  itemLeft = randomPick();
+};
+while (itemCenter === itemLeft || randomThreePicks.includes(itemCenter)){
+  itemCenter = randomPick();
+};
+while (itemRight === itemLeft || itemRight === itemCenter || randomThreePicks.includes(itemRight)){
+  itemRight = randomPick();
+}
 
 //Pick three random numbers to push to aaray
-function itemPick(){
-  for(var i = 0; i < 3; i++){
-    var currentItem = Math.floor(Math.random() * items.length);
-    randomThreePicks.push(currentItem);
-  }
-};
-itemPick();
-console.log(randomThreePicks);
+// function itemPick(){
+//   for(var i = 0; i < 3; i++){
+//     var currentItem = Math.floor(Math.random() * items.length);
+//     randomThreePicks.push(currentItem);
+//   }
+// };
+// itemPick();
+// console.log(randomThreePicks);
 
 //Creates image node
 function drawLeftItem(itemToDraw){
@@ -102,12 +110,13 @@ function drawRightItem(itemToDraw){
 //draws figure
 console.log(itemCenter);
 console.log(itemLeft);
+console.log(itemRight);
 console.log(items[itemCenter]);
 console.log(items[itemLeft]);
+console.log(items[itemRight]);
 drawCenterItem(items[itemCenter]);
 drawLeftItem(items[itemLeft]);
 drawRightItem(items[itemRight]);
-
 
 // userInputStoreForm.addEventListener('click', handleClick);
 //
