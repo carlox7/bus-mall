@@ -1,5 +1,5 @@
 'strict';
-function CatalogItem (filePath, properties, timesShown, timesClicked){
+function CatalogItem (filePath, properties){
   this.filePath = filePath;
   this.properties = properties;
   this.timesShown = 0;
@@ -32,13 +32,29 @@ console.log(rTwoBag);
 
 //Item Array
 var items = [rTwoBag,bananaCutter,bathroomStand,rainBoots,breakfastMaker,meatGum,chairHump,cthulhuToy,dogDuck,dragonCan,penCap,petSweep,pizzaCutter,sharkBag,babySweep,tauntaunBag,unicornCan,tentacleUsb,wateringCan,wineGlass];
-console.log(Items);
+console.log(items);
 
 //Random number generator
 function randomPick(){
   return Math.floor(Math.random() * items.length);
+};
 
-}
+var itemChoice = randomPick();
+console.log(itemChoice);
+
+//Aaray for random three picks
+var randomThreePicks = [];
+console.log(randomThreePicks);
+
+//Pick three random numbers to push to aaray
+// function itemPick(){
+//   var currentItem;
+//   for(var i = 0; i < 3; i++){
+//     currentItem = randomPick();
+//     randomThreePicks.push(currentItem);
+//   }
+// };
+
 //Creates image node
 function drawCatalogItem(itemToDraw){
   console.log(itemToDraw);
