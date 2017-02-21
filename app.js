@@ -1,18 +1,69 @@
 'strict';
-function productList (filePath, properties, timesShown,timesClicked){
+function CatalogItem (filePath, properties){
   this.filePath = filePath;
   this.properties = properties;
-  this.timesShown = timesShown;
-  this.timesClicked = timesClicked;
+  this.timesShown = 0;
+  this.timesClicked = 0;
 
-}
+};
 
-// userInputStoreForm.addEventListener('submit', handleSubmit);
-//
-// function handleSubmit(event) {
-//   event.preventDefault();
-//   event.stopPropagation();
-//   var productChoice = event.target.product.value;
+//Item List
+var rTwoBag = new CatalogItem('img/bag.jpg', 'bag');
+var bananaCutter = new CatalogItem('img/banana.jpg','banana');
+var bathroomStand = new CatalogItem('img/bathroom.jpg','bathroom');
+var rainBoots = new CatalogItem('img/boots.jpg','boots');
+var breakfastMaker = new CatalogItem('img/breakfast.jpg','breakfast');
+var meatGum = new CatalogItem('img/bubblegum.jpg','bubblegum');
+var chairHump = new CatalogItem('img/chair.jpg','chair');
+var cthulhuToy = new CatalogItem('img/cthulhu.jpg','cthulhu');
+var dogDuck = new CatalogItem('img/dog-duck.jpg','dogDuck');
+var dragonCan = new CatalogItem('img/dragon.jpg','dragon');
+var penCap = new CatalogItem('img/pen.jpg','pen');
+var petSweep = new CatalogItem('img/pet-sweep.jpg','petSweep');
+var pizzaCutter = new CatalogItem('img/scissors.jpg','scissors');
+var sharkBag = new CatalogItem('img/shark.jpg','shark');
+var babySweep = new CatalogItem('img/sweep.png','sweep');
+var tauntaunBag = new CatalogItem('img/tauntaun.jpg','tauntaun');
+var unicornCan = new CatalogItem('img/unicorn.jpg','unicorn');
+var tentacleUsb = new CatalogItem('img/usb.gif','usb');
+var wateringCan = new CatalogItem('img/watering-can.jpg','wateringCan');
+var wineGlass = new CatalogItem('img/wine-glass.jpg','wineGlass');
+console.log(rTwoBag);
 
-var bag = new productList('img/bag.jpg','R2-D2 Luggage');
-console.log(bag.productList());
+//Item Array
+var items = [rTwoBag,bananaCutter,bathroomStand,rainBoots,breakfastMaker,meatGum,chairHump,cthulhuToy,dogDuck,dragonCan,penCap,petSweep,pizzaCutter,sharkBag,babySweep,tauntaunBag,unicornCan,tentacleUsb,wateringCan,wineGlass];
+console.log(items);
+
+//Random number generator
+function randomPick(){
+  return Math.floor(Math.random() * items.length);
+};
+
+var itemChoice = randomPick();
+console.log(itemChoice);
+
+//Aaray for random three picks
+var randomThreePicks = [];
+console.log(randomThreePicks);
+
+//Pick three random numbers to push to aaray
+// function itemPick(){
+//   var currentItem;
+//   for(var i = 0; i < 3; i++){
+//     currentItem = randomPick();
+//     randomThreePicks.push(currentItem);
+//   }
+// };
+
+//Creates image node
+function drawCatalogItem(itemToDraw){
+  console.log(itemToDraw);
+  var imageEl = document.createElement('img');
+  var formEl = document.getElementById('product-pick');
+  formEl.appendChild(imageEl);
+  imageEl.src = itemToDraw.filePath;
+};
+
+drawCatalogItem(wineGlass);
+drawCatalogItem(tentacleUsb);
+drawCatalogItem(pizzaCutter);
