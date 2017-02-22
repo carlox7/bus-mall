@@ -1,15 +1,11 @@
 'strict';
-//html nodes
-var picContainer = document.getElementById('picture-container');
-var ItemPictureLeft = document.getElementById('left');
-var ItemPictureCenter = document.getElementById('center');
-var ItemPictureRight = document.getElementById('right');
-
+var resultsEl = document.getElementById('chart');
 //click variables
 var totalClicks = 0;
 var clickLimit = 25;
 var itemsCurrentlyShowing = [];
 
+//Catalog constructor
 function CatalogItem (filePath, properties){
   this.filePath = filePath;
   this.properties = properties;
@@ -50,70 +46,129 @@ function randomPick(){
 };
 
 //Stored random numbers
-var itemLeft = randomPick();
-var itemCenter = randomPick();
-var itemRight = randomPick();
+var itemLeft = 0;
+var itemCenter = 0;
+var itemRight = 0;
 console.log(itemLeft);
 console.log(itemCenter);
 console.log(itemRight);
 
-var leftItemPicture = items[itemLeft];
-var centerItemPicture = items[itemCenter];
-var rightItemPicture = items[itemRight];
-console.log(leftItemPicture);
-console.log(centerItemPicture);
-console.log(rightItemPicture);
-//Aaray for random three picks
-var randomThreePicks = [];
+function drawThree(){
+  itemLeft = randomPick();
+  itemCenter = randomPick();
+  itemRight = randomPick();
 
-//Pick three random numbers to push to aaray
-function itemPick(){
-  for(var i = 0; i < 3; i++){
-    var currentItem = Math.floor(Math.random() * items.length);
-    randomThreePicks.push(currentItem);
+  //Aaray for random three picks
+  var randomThreePicks = [];
+  randomThreePicks.push(itemLeft);
+  randomThreePicks.push(itemCenter);
+  randomThreePicks.push(itemRight);
+  console.log(randomThreePicks);
+
+  //prevents repeating items per turn
+  while (randomThreePicks.includes(itemLeft)){
+    itemLeft = randomPick();
+  };
+  while (itemCenter === itemLeft || randomThreePicks.includes(itemCenter)){
+    itemCenter = randomPick();
+  };
+  while (itemRight === itemLeft || itemRight === itemCenter || randomThreePicks.includes(itemRight)){
+    itemRight = randomPick();
   }
+  //calling functions
+  drawCenterItem(items[itemCenter]);
+  drawLeftItem(items[itemLeft]);
+  drawRightItem(items[itemRight]);
 };
-itemPick();
-console.log(randomThreePicks);
 
 //Creates image node
 function drawLeftItem(itemToDraw){
   var imageLeft = document.createElement('img');
   var formLeft = document.getElementById('left');
+  formLeft.innerHTML = '';
   formLeft.appendChild(imageLeft);
   imageLeft.src = itemToDraw.filePath;
+  items[itemLeft].timesShown ++;
+  formLeft.addEventListener('click', handleClick);
 };
 
 function drawCenterItem(itemToDraw){
   // console.log(itemToDraw);
   var imageCenter = document.createElement('img');
   var formCenter = document.getElementById('center');
+  formCenter.innerHTML = '';
   formCenter.appendChild(imageCenter);
   imageCenter.src = itemToDraw.filePath;
+  items[itemCenter].timesShown ++;
+  formCenter.addEventListener('click', handleClick);
 };
 
 function drawRightItem(itemToDraw){
   // console.log(itemToDraw);
   var imageRight = document.createElement('img');
   var formRight = document.getElementById('right');
+  formRight.innerHTML = '';
   formRight.appendChild(imageRight);
   imageRight.src = itemToDraw.filePath;
+  items[itemRight].timesShown ++;
+  formRight.addEventListener('click', handleClick);
 };
 //draws figure
 console.log(itemCenter);
 console.log(itemLeft);
+console.log(itemRight);
 console.log(items[itemCenter]);
 console.log(items[itemLeft]);
-drawCenterItem(items[itemCenter]);
-drawLeftItem(items[itemLeft]);
-drawRightItem(items[itemRight]);
+console.log(items[itemRight]);
+drawThree();
 
+function handleClick(event){
+  totalClicks ++;
+  if(totalClicks < clickLimit){
+    if(event.target.parentNode.id === 'right'){
+      items[itemRight].timesClicked ++;
+      drawThree();
+      console.log(items[itemRight].timesClicked);
+    } else if(event.target.parentNode.id === 'left'){
+      items[itemLeft].timesClicked ++;
+      drawThree();
+      console.log(items[itemLeft].timesClicked);
+    } else if(event.target.parentNode.id === 'center'){
+      items[itemCenter].timesClicked ++;
+      drawThree();
+      console.log(items[itemCenter].timesClicked);
+    }
+  }else {
+    var ctx = document.getElementById('chart').getContext('2d');
 
-// userInputStoreForm.addEventListener('click', handleClick);
-//
-// function handleClick(event) {
-//   event.preventDefault();
-//   event.stopPropagation();
-//
-//   var itemClick = event.target.productPick.value;
-//};
+    var data = [];
+    var labels = [];
+    var labelColors = ['blue','red','orange','purple','green','yellow','salmon','lightblue','pink','black','blue','red','orange','purple','green','yellow','salmon','lightblue','pink','black'];
+    for(var i = 0; i < items.length; i++){
+      data.push(items[i].timesClicked);
+      labels.push(items[i].properties);
+    }
+    var chartData = {
+      type: 'bar',
+      data: {
+        labels: labelColors,
+        datasets: [{
+          label: '# of Votes / Color',
+          data: data,
+          backgroundColor: labelColors
+        }],
+      },
+      options: {
+        scales: {
+          yAxes:[{
+            beginAtZero: true
+          }]
+        }
+      }
+    };
+
+    var myChart = new Chart(ctx, chartData);
+
+  }
+
+};
