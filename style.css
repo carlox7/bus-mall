@@ -1,4 +1,42 @@
 img {
-  width: 25%;
-  border: 3px solid black;
+  height: 300px;
+  width: 30%;
   margin: 0 auto;
+  border: 3px solid black;
+
+}
+
+body{
+  text-align: center;
+  margin: 0 auto;
+  width: 90%;
+  background-color: lightblue;
+}
+#left {
+  height: 300px;
+  width: 30%;
+  display: inline;
+  margin: 0 auto;
+}
+
+#right{
+  height: 300px;
+  width: 30%;
+  display: inline;
+  margin: 0 auto;
+}
+
+#center {
+  height: 300px;
+  width: 30%;
+  display: inline;
+  margin: 0 auto;
+}
+
+h1{
+  font-family: arial;
+}
+
+h2{
+  font-family: sans-serif;
+}
