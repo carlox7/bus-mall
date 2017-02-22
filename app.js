@@ -1,8 +1,8 @@
 'strict';
-var resultsEl = document.getElementById('resultsList');
+var resultsEl = document.getElementById('chart');
 //click variables
 var totalClicks = 0;
-var clickLimit = 5;
+var clickLimit = 25;
 var itemsCurrentlyShowing = [];
 
 //Catalog constructor
@@ -81,16 +81,6 @@ function drawThree(){
   drawRightItem(items[itemRight]);
 };
 
-//Pick three random numbers to push to aaray
-// function itemPick(){
-//   for(var i = 0; i < 3; i++){
-//     var currentItem = Math.floor(Math.random() * items.length);
-//     randomThreePicks.push(currentItem);
-//   }
-// };
-// itemPick();
-// console.log(randomThreePicks);
-
 //Creates image node
 function drawLeftItem(itemToDraw){
   var imageLeft = document.createElement('img');
@@ -149,13 +139,36 @@ function handleClick(event){
       console.log(items[itemCenter].timesClicked);
     }
   }else {
-    for( var i = 0; i < items.length; i++){
-      var resultsMessage = items[i].properties + ' got ' + items[i].timesClicked + ' votes';
-      var listItem = document.createElement('li');
-      listItem.textContent = resultsMessage;
-      resultsList.appendChild(listItem);
+    var ctx = document.getElementById('chart').getContext('2d');
 
+    var data = [];
+    var labels = [];
+    var labelColors = ['blue','red','orange','purple','green','yellow','salmon','lightblue','pink','black','blue','red','orange','purple','green','yellow','salmon','lightblue','pink','black'];
+    for(var i = 0; i < items.length; i++){
+      data.push(items[i].timesClicked);
+      labels.push(items[i].properties);
     }
+    var chartData = {
+      type: 'bar',
+      data: {
+        labels: labelColors,
+        datasets: [{
+          label: '# of Votes / Color',
+          data: data,
+          backgroundColor: labelColors
+        }],
+      },
+      options: {
+        scales: {
+          yAxes:[{
+            beginAtZero: true
+          }]
+        }
+      }
+    };
+
+    var myChart = new Chart(ctx, chartData);
+
   }
 
-}
+};
