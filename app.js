@@ -41,6 +41,15 @@ var wineGlass = new CatalogItem('img/wine-glass.jpg','wineGlass');
 var items = [rTwoBag,bananaCutter,bathroomStand,rainBoots,breakfastMaker,meatGum,chairHump,cthulhuToy,dogDuck,dragonCan,penCap,petSweep,pizzaCutter,sharkBag,babySweep,tauntaunBag,unicornCan,tentacleUsb,wateringCan,wineGlass];
 console.log(items);
 
+//parses local storage clicks into items array
+if (localStorage.items){
+  var existingData = JSON.parse(localStorage.items);
+  for(var r = 0; r < existingData.length; r++){
+    items[r].timesClicked += existingData[r].timesClicked;
+    items[r].timesShown += existingData[r].timesShown;
+  }
+};
+
 //Random number generator
 function randomPick(){
   return Math.floor(Math.random() * items.length);
@@ -129,10 +138,6 @@ function saveProductsToLocalStorage(items){
   localStorage.items = JSON.stringify(items);
   console.log('Saved to local Storage!');
 };
-
-//stores local storage into items variable
-var allItems = JSON.parse(localStorage.items);
-console.log(allItems);
 
 //parse click data into array
 function allItemClicks(products){
