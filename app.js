@@ -1,10 +1,20 @@
 'use strict';
 
-var resultsEl = document.getElementById('chart');
+//Stored random numbers
+var itemLeft = 0;
+var itemCenter = 0;
+var itemRight = 0;
+console.log(itemLeft);
+console.log(itemCenter);
+console.log(itemRight);
+
 //click variables
 var totalClicks = 0;
 var clickLimit = 25;
 var itemsCurrentlyShowing = [];
+
+//chart element node
+var resultsEl = document.getElementById('chart');
 
 //Catalog constructor
 function CatalogItem (filePath, properties){
@@ -54,14 +64,6 @@ if (localStorage.items){
 function randomPick(){
   return Math.floor(Math.random() * items.length);
 };
-
-//Stored random numbers
-var itemLeft = 0;
-var itemCenter = 0;
-var itemRight = 0;
-console.log(itemLeft);
-console.log(itemCenter);
-console.log(itemRight);
 
 //set random numbers to item variables
 function drawThree(){
