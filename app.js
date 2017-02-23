@@ -16,26 +16,26 @@ function CatalogItem (filePath, properties){
 };
 
 //Item List
-var rTwoBag = new CatalogItem('img/bag.jpg', 'bag');
-var bananaCutter = new CatalogItem('img/banana.jpg','banana');
-var bathroomStand = new CatalogItem('img/bathroom.jpg','bathroom');
-var rainBoots = new CatalogItem('img/boots.jpg','boots');
-var breakfastMaker = new CatalogItem('img/breakfast.jpg','breakfast');
-var meatGum = new CatalogItem('img/bubblegum.jpg','bubblegum');
-var chairHump = new CatalogItem('img/chair.jpg','chair');
-var cthulhuToy = new CatalogItem('img/cthulhu.jpg','cthulhu');
-var dogDuck = new CatalogItem('img/dog-duck.jpg','dogDuck');
-var dragonCan = new CatalogItem('img/dragon.jpg','dragon');
-var penCap = new CatalogItem('img/pen.jpg','pen');
-var petSweep = new CatalogItem('img/pet-sweep.jpg','petSweep');
-var pizzaCutter = new CatalogItem('img/scissors.jpg','scissors');
-var sharkBag = new CatalogItem('img/shark.jpg','shark');
-var babySweep = new CatalogItem('img/sweep.png','sweep');
-var tauntaunBag = new CatalogItem('img/tauntaun.jpg','tauntaun');
-var unicornCan = new CatalogItem('img/unicorn.jpg','unicorn');
-var tentacleUsb = new CatalogItem('img/usb.gif','usb');
-var wateringCan = new CatalogItem('img/water-can.jpg','wateringCan');
-var wineGlass = new CatalogItem('img/wine-glass.jpg','wineGlass');
+var rTwoBag = new CatalogItem('img/bag.jpg', 'R2D2 Bag');
+var bananaCutter = new CatalogItem('img/banana.jpg','Banana Slicer');
+var bathroomStand = new CatalogItem('img/bathroom.jpg','iPad Bathroom Stand');
+var rainBoots = new CatalogItem('img/boots.jpg','Toeless Rain Boots ');
+var breakfastMaker = new CatalogItem('img/breakfast.jpg','All in One Breakfast');
+var meatGum = new CatalogItem('img/bubblegum.jpg','Meatball Bubblegum');
+var chairHump = new CatalogItem('img/chair.jpg','Camel Chair');
+var cthulhuToy = new CatalogItem('img/cthulhu.jpg','Cthulhu Action Figure');
+var dogDuck = new CatalogItem('img/dog-duck.jpg','Dog Duck Beak');
+var dragonCan = new CatalogItem('img/dragon.jpg','Dragon Meat');
+var penCap = new CatalogItem('img/pen.jpg','Utinsil Pen Caps');
+var petSweep = new CatalogItem('img/pet-sweep.jpg','Pet Sweep Footies');
+var pizzaCutter = new CatalogItem('img/scissors.jpg','Pizza Scissors');
+var sharkBag = new CatalogItem('img/shark.jpg','Shark Sleeping Bag');
+var babySweep = new CatalogItem('img/sweep.png','Sweeper Onsie');
+var tauntaunBag = new CatalogItem('img/tauntaun.jpg','Tauntaun Bag');
+var unicornCan = new CatalogItem('img/unicorn.jpg','Unicorn Meat');
+var tentacleUsb = new CatalogItem('img/usb.gif','Tentacle USB');
+var wateringCan = new CatalogItem('img/water-can.jpg','Self Watering Can');
+var wineGlass = new CatalogItem('img/wine-glass.jpg','Wine Glass Dome');
 
 //Item Array
 var items = [rTwoBag,bananaCutter,bathroomStand,rainBoots,breakfastMaker,meatGum,chairHump,cthulhuToy,dogDuck,dragonCan,penCap,petSweep,pizzaCutter,sharkBag,babySweep,tauntaunBag,unicornCan,tentacleUsb,wateringCan,wineGlass];
@@ -68,7 +68,7 @@ function drawThree(){
   itemCenter = randomPick();
   itemRight = randomPick();
 
-  //Aaray for random three picks
+  //Array for random three picks
   var randomThreePicks = [];
   randomThreePicks.push(itemLeft);
   randomThreePicks.push(itemCenter);
@@ -220,7 +220,7 @@ function handleClick(event){
           xAxes: [{
             ticks: {
               fontColor: 'white',
-              fontSize: 18,
+              fontSize: 14,
               stepSize: 1,
               beginAtZero:true
             }
