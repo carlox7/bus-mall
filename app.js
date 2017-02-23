@@ -1,4 +1,5 @@
-'strict';
+'use strict';
+
 var resultsEl = document.getElementById('chart');
 //click variables
 var totalClicks = 0;
@@ -113,32 +114,74 @@ function drawRightItem(itemToDraw){
   items[itemRight].timesShown ++;
   formRight.addEventListener('click', handleClick);
 };
-//draws figure
+
 console.log(itemCenter);
 console.log(itemLeft);
 console.log(itemRight);
 console.log(items[itemCenter]);
 console.log(items[itemLeft]);
 console.log(items[itemRight]);
+//draws figure
 drawThree();
 
+//saves items array to local storage
+function saveProductsToLocalStorage(items){
+  localStorage.items = JSON.stringify(items);
+  console.log('Saved to local Storage!');
+};
+
+//stores local storage into items variable
+var allItems = JSON.parse(localStorage.items);
+console.log(allItems);
+
+//parse click data into array
+function allItemClicks(products){
+  var itemClicks = [];
+  for (var x = 0; x < products.length; x++) {
+    itemClicks.push(products[x].timesClicked);
+  }
+  console.log(itemClicks);
+  return itemClicks;
+}
+
+function allProductsNames(products){
+  var productNames = [];
+  for (var i = 0; i < products.length; i++) {
+    productNames.push(products[i].properties);
+  }
+  console.log(productNames);
+  return productNames;
+};
+
+var nameData = allProductsNames(items);
+console.log(allProductsNames);
+
+//stores clicks to clickData array
+var clickData = [];
 function handleClick(event){
   totalClicks ++;
   if(totalClicks < clickLimit){
     if(event.target.parentNode.id === 'right'){
       items[itemRight].timesClicked ++;
       drawThree();
+      console.log(items);
+      //calls function to add clicks to items array
+      clickData = allItemClicks(items);
+      console.log(clickData);
       console.log(items[itemRight].timesClicked);
     } else if(event.target.parentNode.id === 'left'){
       items[itemLeft].timesClicked ++;
       drawThree();
+      clickData = allItemClicks(items);
       console.log(items[itemLeft].timesClicked);
     } else if(event.target.parentNode.id === 'center'){
       items[itemCenter].timesClicked ++;
       drawThree();
+      clickData = allItemClicks(items);
       console.log(items[itemCenter].timesClicked);
     }
   }else {
+    saveProductsToLocalStorage(items);
     var ctx = document.getElementById('chart').getContext('2d');
 
     var data = [];
@@ -148,20 +191,34 @@ function handleClick(event){
       data.push(items[i].timesClicked);
       labels.push(items[i].properties);
     }
+    console.log(clickData);
     var chartData = {
       type: 'bar',
       data: {
-        labels: labelColors,
+        labels: nameData,
         datasets: [{
           label: '# of Votes / Color',
-          data: data,
+          data: clickData,
           backgroundColor: labelColors
         }],
       },
       options: {
         scales: {
           yAxes:[{
-            beginAtZero: true
+            ticks: {
+              fontColor: 'white',
+              fontSize: 14,
+              stepSize: 1,
+              beginAtZero:true
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: 'white',
+              fontSize: 18,
+              stepSize: 1,
+              beginAtZero:true
+            }
           }]
         }
       }
