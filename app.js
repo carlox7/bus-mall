@@ -63,6 +63,7 @@ console.log(itemLeft);
 console.log(itemCenter);
 console.log(itemRight);
 
+//set random numbers to item variables
 function drawThree(){
   itemLeft = randomPick();
   itemCenter = randomPick();
@@ -91,7 +92,7 @@ function drawThree(){
   drawRightItem(items[itemRight]);
 };
 
-//Creates image node
+//Creates image nodes
 function drawLeftItem(itemToDraw){
   var imageLeft = document.createElement('img');
   var formLeft = document.getElementById('left');
@@ -103,7 +104,6 @@ function drawLeftItem(itemToDraw){
 };
 
 function drawCenterItem(itemToDraw){
-  // console.log(itemToDraw);
   var imageCenter = document.createElement('img');
   var formCenter = document.getElementById('center');
   formCenter.innerHTML = '';
@@ -114,7 +114,6 @@ function drawCenterItem(itemToDraw){
 };
 
 function drawRightItem(itemToDraw){
-  // console.log(itemToDraw);
   var imageRight = document.createElement('img');
   var formRight = document.getElementById('right');
   formRight.innerHTML = '';
@@ -130,7 +129,8 @@ console.log(itemRight);
 console.log(items[itemCenter]);
 console.log(items[itemLeft]);
 console.log(items[itemRight]);
-//draws figure
+
+// calls function for random numbers
 drawThree();
 
 //saves items array to local storage
@@ -139,7 +139,7 @@ function saveProductsToLocalStorage(items){
   console.log('Saved to local Storage!');
 };
 
-//parse click data into array
+//push click data into array
 function allItemClicks(products){
   var itemClicks = [];
   for (var x = 0; x < products.length; x++) {
@@ -149,6 +149,7 @@ function allItemClicks(products){
   return itemClicks;
 }
 
+//push name data into array
 function allProductsNames(products){
   var productNames = [];
   for (var i = 0; i < products.length; i++) {
