@@ -10,7 +10,7 @@ body{
   text-align: center;
   margin: 0 auto;
   width: 90%;
-  background-color: lightblue;
+  background-color: #005695;
 }
 #left {
   height: 300px;
@@ -34,9 +34,12 @@ body{
 }
 
 h1{
-  font-family: arial;
+  font-family: 'Baloo', cursive;
+  font-size: 60px;
+  color: #5D9732;
 }
 
 h2{
-  font-family: sans-serif;
+  font-family: 'Comfortaa', cursive;
+  color: #132530;
 }
